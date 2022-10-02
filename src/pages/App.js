@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 // MY COMPONENTS
 import PokedexLayout from "layouts/PokedexLayout";
-import PokemonList from "pages/PokemonList";
+import Pokedex from "pages/Pokedex";
 import PokemonDetail from "pages/PokemonDetail";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
@@ -20,7 +20,7 @@ class App extends React.Component {
       <Routes>
         <Route path="/" element={<PokedexLayout />}>
           <Route index element={<Home />} />
-          <Route path={ROUTES.POKEMON_LIST} element={<PokemonList />} />
+          <Route path={ROUTES.POKEMON_LIST} element={<Pokedex />} />
           <Route path={ROUTES.POKEMON_DETAIL} element={<PokemonDetail />} />
           <Route path="*" element={<NotFound />} />
         </Route>

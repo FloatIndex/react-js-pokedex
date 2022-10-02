@@ -5,7 +5,7 @@ import { ROUTES } from "utils/routingConstants";
 
 function Home() {
     return (
-        <div>
+        <div id="home">
             <Link to={ROUTES.POKEMON_LIST}>Go to pokémon list</Link>
         </div>
     );
