@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 // MY COMPONENTS
-import PokemonCard from "../components/PokemonCard";
+import Pokemon from "../components/Pokemon";
 
 function PokemonList() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -14,31 +14,41 @@ function PokemonList() {
     axios
       .get("https://pokeapi.co/api/v2/pokemon/")
       .then((res) => {
-        setPokemonList(res.data.results);
+        res.data.results.forEach((pokemon) => {
+          axios.get(pokemon.url).then((res) => {
+            setPokemonList((prevList) => [...prevList, res.data]);
+          });
+        });
         setIsLoading(false);
+        setIsError(false);
       })
       .catch((_err) => {
+        setIsLoading(false);
         setIsError(true);
       });
   }, []);
 
   return (
     <main id="pokedex">
-      <h1>POK&Eacute;MON LIST</h1>
+      <h1>POK&Eacute;DEX</h1>
 
-      {isError && <div>Couldn't load resources</div>}
-
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <ul>
-          {pokemonList.map((pokemon) => (
-            <li key={pokemon.name}>
-              <PokemonCard name={pokemon.name}/>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className="container">
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : isError ? (
+          <div>Couldn't load resources</div>
+        ) : (
+          <ul className="list">
+            {pokemonList.map((pokemon) => (
+              <Pokemon
+                key={pokemon.name}
+                name={pokemon.name}
+                image={pokemon.sprites.other.dream_world.front_default}
+              />
+            ))}
+          </ul>
+        )}
+      </div>
     </main>
   );
 }
