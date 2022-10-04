@@ -7,16 +7,18 @@ function PokemonList() {
   const [pokemonList, setPokemonList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [loadMore, setLoadMore] = useState(0)
 
   useEffect(() => {
     const axios = require("axios").default;
     setIsLoading(true);
     axios
-      .get("https://pokeapi.co/api/v2/pokemon/")
+      .get(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${loadMore}`)
       .then((res) => {
         res.data.results.forEach((pokemon) => {
           axios.get(pokemon.url).then((res) => {
             setPokemonList((prevList) => [...prevList, res.data]);
+            //console.log(res.data)
           });
         });
         setIsLoading(false);
@@ -26,7 +28,12 @@ function PokemonList() {
         setIsLoading(false);
         setIsError(true);
       });
-  }, []);
+      console.log("loadMore", loadMore);
+  }, [loadMore]);
+
+  const handleLoad = () => {
+    setLoadMore(prevState => prevState + 20);
+  }
 
   return (
     <main id="pokedex">
@@ -38,17 +45,20 @@ function PokemonList() {
         ) : isError ? (
           <div>Couldn't load resources</div>
         ) : (
-          <ul className="list">
+          <ul>
             {pokemonList.map((pokemon) => (
               <Pokemon
                 key={pokemon.name}
                 name={pokemon.name}
                 image={pokemon.sprites.other.dream_world.front_default}
+                mainType={pokemon.types[0].type.name}
               />
             ))}
           </ul>
         )}
       </div>
+
+      <button onClick={() => {handleLoad()}}>More please!</button>
     </main>
   );
 }
