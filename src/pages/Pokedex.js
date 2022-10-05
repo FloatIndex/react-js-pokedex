@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
 // MY COMPONENTS
-import Pokemon from "../components/Pokemon";
+import Pokemon from "../components/PokemonCard";
 
 function PokemonList() {
   const [pokemonList, setPokemonList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [loadMore, setLoadMore] = useState(0)
+  const [loadMore, setLoadMore] = useState(0);
 
   useEffect(() => {
     const axios = require("axios").default;
@@ -36,7 +36,7 @@ function PokemonList() {
   }
 
   return (
-    <main id="pokedex">
+    <main id="pokedex" style={{position: "relative"}}>
       <h1>POK&Eacute;DEX</h1>
 
       <div className="container">
