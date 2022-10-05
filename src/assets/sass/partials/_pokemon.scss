@@ -1,0 +1,39 @@
+.pokemon {
+  width: calc(100vw / 4);
+  height: calc(100vw / 3);
+  padding: 0 1rem;
+
+  a {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    background: $c-default;
+
+    @each $name, $color in $c-type-map {
+      &.c-type-#{$name} {
+        background-color: $color;
+      }
+    }
+
+    .txt-wrapper {
+      height: 20%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .img-wrapper {
+      width: 100%;
+      height: 80%;
+      padding: 1.5rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+}

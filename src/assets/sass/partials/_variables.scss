@@ -1,0 +1,31 @@
+// FONT-SIZE FORMULA
+$font-size-formula: calc(15px + 0.390625vw);
+
+// COLORS
+$c-default: #D9DCD6;
+$c-type-map: (
+    "water": #4ec3e09c,
+    "grass": #c5eb96,
+    "fire": #ff6a66,
+    "ground": #D1A38C,
+    "dark": #4f6c89,
+    "bug": #eef4c9,
+    "poison": #957DAD,
+    "electric": #fefe75,
+    "rock": #798b8e,
+    "psychic": #F1DD7B,
+    "fighting": #b76456,
+    "fairy": #edc6e5,
+    "sand": #E9E3C6,
+    "normal": #D9DCD6,
+    "ghost": #D4A9CB,
+    "ice": #dde9f3,
+);
+
+
+// BREAKPOINTS
+$bp-smartphone: 576px;
+$bp-tablet: 768px;
+$bp-lg: 992px;
+$bp-xl: 1200px;
+$bp-xxl: 1400px;

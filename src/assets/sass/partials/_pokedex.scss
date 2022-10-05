@@ -1,0 +1,16 @@
+#pokedex {
+  padding: 50px 0px;
+  text-align: center;
+
+  h1 {
+    margin-bottom: 4rem;
+  }
+
+  .container {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: 2rem;
+    }
+  }
+}
