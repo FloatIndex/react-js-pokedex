@@ -1,6 +1,6 @@
 # react-js-pokedex
-A simple pokédex web-app consuming APIs from https://pokeapi.co/
-
+A simple pokédex web-app consuming APIs from https://pokeapi.co/.
+Caught pokemon will be saved into local storage.
 
 # Getting Started with Create React App
 
