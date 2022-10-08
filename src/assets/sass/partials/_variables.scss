@@ -21,11 +21,15 @@ $c-type-map: (
     "ghost": #D4A9CB,
     "ice": #dde9f3,
 );
+$c-poke-red: #d60a0a;
+$c-poke-red-darker: #800606;
+$c-white: #fff;
+$c-black: #000;
 
 
 // BREAKPOINTS
-$bp-smartphone: 576px;
-$bp-tablet: 768px;
+$bp-sm: 576px;
+$bp-md: 768px;
 $bp-lg: 992px;
 $bp-xl: 1200px;
 $bp-xxl: 1400px;

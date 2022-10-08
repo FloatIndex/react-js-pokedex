@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-// MY COMPONENTS
+// My components
 import Pokemon from "../components/PokemonCard";
 
 function PokemonList() {
@@ -15,10 +15,18 @@ function PokemonList() {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${loadMore}`)
       .then((res) => {
+        // because of the structure of the poke-APIs, I need to call a second API
+        // for each and every pokemon in order to get their details
         res.data.results.forEach((pokemon) => {
           axios.get(pokemon.url).then((res) => {
-            setPokemonList((prevList) => [...prevList, res.data]);
-            //console.log(res.data)
+            // check if the currently retrieved pokemon has been saved as caught in localStorage 
+            const savedAsCaught = localStorage.getItem(res.data.name);
+            let isCaugth = false;
+            if (savedAsCaught) {
+              isCaugth = true;
+            }
+            // add the property isCaught to the pokemon object being added to the pokemon list
+            setPokemonList((prevList) => [...prevList, {...res.data, isCaught: isCaugth}]);
           });
         });
         setIsLoading(false);
@@ -28,10 +36,9 @@ function PokemonList() {
         setIsLoading(false);
         setIsError(true);
       });
-      console.log("loadMore", loadMore);
   }, [loadMore]);
 
-  const handleLoad = () => {
+  const handleLoadMore = () => {
     setLoadMore(prevState => prevState + 20);
   }
 
@@ -39,7 +46,7 @@ function PokemonList() {
     <main id="pokedex" style={{position: "relative"}}>
       <h1>POK&Eacute;DEX</h1>
 
-      <div className="container">
+      <div className="list-container">
         {isLoading ? (
           <div>Loading...</div>
         ) : isError ? (
@@ -51,14 +58,17 @@ function PokemonList() {
                 key={pokemon.name}
                 name={pokemon.name}
                 image={pokemon.sprites.other.dream_world.front_default}
-                mainType={pokemon.types[0].type.name}
+                types={[...pokemon.types]}
+                abilities={[...pokemon.abilities]}
+                stats={[...pokemon.stats]}
+                isCaughtProp={pokemon.isCaught}
               />
             ))}
           </ul>
         )}
       </div>
 
-      <button onClick={() => {handleLoad()}}>More please!</button>
+      <button onClick={() => {handleLoadMore()}}>More please!</button>
     </main>
   );
 }

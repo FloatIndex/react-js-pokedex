@@ -1,15 +1,17 @@
 #pokedex {
   padding: 50px 0px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 3.5rem;
 
-  h1 {
-    margin-bottom: 4rem;
-  }
+  .list-container {
+    max-width: $bp-xxl;
 
-  .container {
     ul {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       row-gap: 2rem;
     }
   }
