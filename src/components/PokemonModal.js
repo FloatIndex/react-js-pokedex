@@ -2,17 +2,16 @@
 import pokeballIconClosed from "assets/images/pokeball_icon_closed.png";
 
 function PokemonModal({
-  setIsModalOpen,
+  onModalClose,
   name,
   image,
   types,
   abilities,
   stats,
-  isCaught,
 }) {
   return (
     <>
-      <div className="blurred-bg" onClick={() => setIsModalOpen(false)}></div>
+      <div className="blurred-bg" onClick={onModalClose}></div>
       <div id="modal">
         <h1>{name}</h1>
 
@@ -39,7 +38,7 @@ function PokemonModal({
           </div>
         </div>
 
-        {isCaught ? (
+        {localStorage.getItem(name) ? (
           <img
             className="pokeball-icon closed hidden"
             src={pokeballIconClosed}

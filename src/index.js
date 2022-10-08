@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import reportWebVitals from "test/reportWebVitals";
 import App from "pages/App";
 import { BrowserRouter } from "react-router-dom";
+import 'semantic-ui-css/semantic.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

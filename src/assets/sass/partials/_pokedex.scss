@@ -5,9 +5,8 @@
   align-items: center;
   row-gap: 3.5rem;
 
-  .list-container {
+  .container {
     max-width: $bp-xxl;
-
     ul {
       display: flex;
       flex-wrap: wrap;

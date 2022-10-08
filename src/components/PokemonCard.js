@@ -7,20 +7,30 @@ import PokemonModal from "./PokemonModal";
 import pokeballIconClosed from "assets/images/pokeball_icon_closed.png";
 import pokeballIconOpened from "assets/images/pokeball_icon_opened.png";
 
-function PokemonCard({ name, image, types, abilities, stats, isCaughtProp }) {
+function PokemonCard({
+  name,
+  image,
+  types,
+  abilities,
+  stats,
+  onCaptivityChange,
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isCaught, setIsCaught] = useState(isCaughtProp);
 
   const handleCatch = (e) => {
-    setIsCaught(true);
+    onCaptivityChange(name);
     localStorage.setItem(name, "caught");
     e.stopPropagation();
   };
 
   const handleRelease = (e) => {
-    setIsCaught(false);
+    onCaptivityChange(name);
     localStorage.removeItem(name);
     e.stopPropagation();
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -31,13 +41,13 @@ function PokemonCard({ name, image, types, abilities, stats, isCaughtProp }) {
           setIsModalOpen(true);
         }}
       >
-        <div className={`c-type-${types[0].type.name} container`}>
+        <div className={`c-type-${types[0].type.name} card-container`}>
           <div className="txt-wrapper">
             <h2>{name}</h2>
             <small>{types[0].type.name}</small>
           </div>
 
-          {isCaught ? (
+          {localStorage.getItem(name) ? (
             <div className="icon-wrapper">
               <img
                 className="pokeball-icon closed"
@@ -53,7 +63,13 @@ function PokemonCard({ name, image, types, abilities, stats, isCaughtProp }) {
               />
             </div>
           ) : (
-            <button onClick={(e) => handleCatch(e)}>catch it!</button>
+            <button
+              onClick={(e) => {
+                handleCatch(e);
+              }}
+            >
+              catch it!
+            </button>
           )}
 
           <div className="img-wrapper">
@@ -63,13 +79,12 @@ function PokemonCard({ name, image, types, abilities, stats, isCaughtProp }) {
       </li>
       {isModalOpen && (
         <PokemonModal
-          setIsModalOpen={setIsModalOpen}
+          onModalClose={() => handleModalClose()}
           image={image}
           name={name}
           types={types}
           abilities={abilities}
           stats={stats}
-          isCaught={isCaught}
         />
       )}
     </>
