@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Button } from "semantic-ui-react";
 
 // My components
 import Pokemon from "../components/PokemonCard";
@@ -118,8 +119,8 @@ function PokemonList() {
   };
 
   return (
-    <main id="pokedex" style={{ position: "relative" }}>
-      <h1>POK&Eacute;DEX</h1>
+    <main id="pokedex">
+      <h1 className="main-title">POK&Eacute;DEX</h1>
 
       {isLoading ? (
         <div>Loading...</div>
@@ -138,6 +139,7 @@ function PokemonList() {
                 key={filteredPokemon.name}
                 name={filteredPokemon.name}
                 image={filteredPokemon.sprites.other.dream_world.front_default}
+                id={filteredPokemon.id}
                 types={[...filteredPokemon.types]}
                 abilities={[...filteredPokemon.abilities]}
                 stats={[...filteredPokemon.stats]}
@@ -151,13 +153,13 @@ function PokemonList() {
         </div>
       )}
 
-      <button
+      <Button
         onClick={() => {
           handleLoadMore();
         }}
       >
         More please!
-      </button>
+      </Button>
     </main>
   );
 }

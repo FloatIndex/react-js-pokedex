@@ -2,10 +2,14 @@
   margin-bottom: 4rem;
   display: flex;
   justify-content: center;
-  column-gap: 2rem;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 2rem;
 
   .ui.input > input:focus,
   .ui.selection.dropdown:focus,
+  .ui.input > input,
+  .ui.selection.dropdown,
   .ui.selection.active.dropdown .menu {
     border-color: $c-poke-red;
   }

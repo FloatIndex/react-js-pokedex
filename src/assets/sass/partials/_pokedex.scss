@@ -5,13 +5,26 @@
   align-items: center;
   row-gap: 3.5rem;
 
+  .main-title {
+    font-size: 4rem;
+    color: $c-poke-red;
+  }
+
   .container {
-    max-width: $bp-xxl;
     ul {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       row-gap: 2rem;
+    }
+  }
+
+  .ui.button {
+    background-color: $c-white;
+    color: $c-poke-red;
+    border: 1px solid $c-poke-red;
+    &:hover {
+      background-color: rgb($c-poke-red, 0.1);
     }
   }
 }

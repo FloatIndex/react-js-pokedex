@@ -10,6 +10,7 @@ import pokeballIconOpened from "assets/images/pokeball_icon_opened.png";
 function PokemonCard({
   name,
   image,
+  id,
   types,
   abilities,
   stats,
@@ -63,13 +64,15 @@ function PokemonCard({
               />
             </div>
           ) : (
-            <button
-              onClick={(e) => {
-                handleCatch(e);
-              }}
-            >
-              catch it!
-            </button>
+            <div className="button-wrapper">
+              <button
+                onClick={(e) => {
+                  handleCatch(e);
+                }}
+              >
+                <small>catch it!</small>
+              </button>
+            </div>
           )}
 
           <div className="img-wrapper">
@@ -82,6 +85,7 @@ function PokemonCard({
           onModalClose={() => handleModalClose()}
           image={image}
           name={name}
+          id={id}
           types={types}
           abilities={abilities}
           stats={stats}
