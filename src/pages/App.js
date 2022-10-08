@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 // MY COMPONENTS
 import PokedexLayout from "layouts/PokedexLayout";
 import Pokedex from "pages/Pokedex";
-import PokemonDetail from "pages/PokemonDetail";
 import NotFound from "pages/NotFound";
 
 // STYLE
@@ -16,7 +15,6 @@ class App extends React.Component {
       <Routes>
         <Route path="/" element={<PokedexLayout />}>
           <Route index element={<Pokedex />} />
-          <Route path="/:pokemonName" element={<PokemonDetail />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
